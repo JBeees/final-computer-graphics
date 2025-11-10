@@ -13,9 +13,11 @@ document.body.appendChild(renderer.domElement);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
+controls.minPolarAngle = 0; // horizontal
+controls.maxPolarAngle = Math.PI / 1.8; // vertikal maksimal 100°
 
 const gridHelper = new THREE.GridHelper(10, 10, 0x444444, 0x222222);
-gridHelper.position.y = -2;
+gridHelper.position.y = -2.2;
 scene.add(gridHelper);
 
 let faceSize = 1;
@@ -83,7 +85,10 @@ bottomFace.position.set(0, -halfSize, 0);
 bottomPivot.add(bottomFace);
 bottomPivot.userData.target = { rotation: new THREE.Euler(Math.PI / 2, 0, 0), position: new THREE.Vector3(0, -faceSize, 0) };
 
-const backFace = createFace(materials.back, 'back');
+const backFace = createFace(materials.back, 'back'
+
+  
+);
 backFace.position.set(0, 0, -halfSize);
 scene.add(backFace);
 
@@ -191,63 +196,70 @@ function updateCubeSize() {
   });
 }
 
-document.getElementById('showInfoBtn').addEventListener('click', () => {
+document.getElementById("prevButton").onclick = () => {
+  window.location.href = "pyramid.html";
+};
+document.getElementById("nextButton").onclick = () => {
+  window.location.href = "cone.html";
+};
+
+document.getElementById('showInfoButton').addEventListener('click', () => {
   if (unfold) {
     return;
   }
   showInfo = !showInfo;
-  const btn = document.getElementById('showInfoBtn');
+  const btn = document.getElementById('showInfoButton');
   btn.textContent = showInfo ? 'Hide Info' : 'Show Info';
   updateInfoLabels();
 });
 
-document.getElementById('zoomInBtn').addEventListener('click', () => {
+document.getElementById('zoomInButton').addEventListener('click', () => {
   const direction = new THREE.Vector3();
   camera.getWorldDirection(direction);
   camera.position.addScaledVector(direction, 0.5);
   controls.update();
 });
 
-document.getElementById('zoomOutBtn').addEventListener('click', () => {
+document.getElementById('zoomOutButton').addEventListener('click', () => {
   const direction = new THREE.Vector3();
   camera.getWorldDirection(direction);
   camera.position.addScaledVector(direction, -0.5);
   controls.update();
 });
 
-document.getElementById('addSizeBtn').addEventListener('click', () => {
+document.getElementById('addSizeButton').addEventListener('click', () => {
   if (faceSize <= 2.5) {
     faceSize += 0.1;
     updateCubeSize();
   }
 });
 
-document.getElementById('redSizeBtn').addEventListener('click', () => {
+document.getElementById('reduceSizeButton').addEventListener('click', () => {
   if (faceSize > 0.3) {
     faceSize -= 0.1;
     updateCubeSize();
   }
 });
 let unfold = false;
-document.getElementById('unfoldBtn').addEventListener('click', () => {
+document.getElementById('unfoldButton').addEventListener('click', () => {
   targetProgress = 1;
   unfold = true;
   if (showInfo) {
     infoLabels.forEach(label => label.element.style.display = 'none');
     showInfo = !showInfo;
-    const tempBtn = document.getElementById("showInfoBtn");
+    const tempBtn = document.getElementById("showInfoButton");
     tempBtn.textContent = "Show Info";
   }
   animating = true;
 });
 
-document.getElementById('foldBtn').addEventListener('click', () => {
+document.getElementById('foldButton').addEventListener('click', () => {
   targetProgress = 0;
   unfold = false;
   animating = true;
 });
 
-document.getElementById('resetBtn').addEventListener('click', () => {
+document.getElementById('resetButton').addEventListener('click', () => {
   camera.position.set(4, 4, 6);
   controls.target.set(0, 0, 0);
   controls.update();
