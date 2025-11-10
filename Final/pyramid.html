@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Lexend+Giga:wght@100..900&display=swap">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
+  <link rel="stylesheet" href="style.css">
+  <title>Geometry</title>
+</head>
+
+<body>
+  <div id="top">
+    <button id="prevButton">‹</button>
+    <div id="geometryTitle">Pyramid</div>
+    <button id="nextButton">›</button>
+  </div>
+
+  <div id="formulaPanel">
+    <h3>Pyramid Formulas</h3>
+    <div class="formulaCard">
+      <p style="margin: 8px 0;"><strong>Volume:</strong> <span style="font-size: 18px; color: #000;">$$ {V =\frac{1}{3}\times \text{Luas Alas}\times \text{Tinggi}} $$</span></p>
+      <p style="margin: 8px 0;"><strong>Surface Area:</strong> <span style="font-size: 18px; color: #000;">$$  {A = s^{2} + {4} \times (\frac{1}{2} \times(s) \times \text{t_segitiga})} $$</span></p>
+    </div>
+
+    <hr style="border: none; border-top: 2px dashed #ccc; margin: 20px 0;"> 
+
+    <h3>Example</h3>
+    <div class="formulaCard">
+      <p id="pyramidVolume" class="formulaExample">V = 10³ = 1000 cm³</p>
+      <p id="pyramidSurface" class="formulaExample">A = 6 × 10² = 600 cm²</p>
+    </div>
+  </div>
+
+  <div id="controlPanel">
+    <h3>Controls</h3>
+    <button id="unfoldButton" class = "whiteButton">Unfold</button>
+    <button id="foldButton" class = "blackButton">Fold </button>
+    <button id="showInfoButton" class = "whiteButton">Show Info</button>
+    <button id="resetButton" class="blackButton">Reset View</button>
+
+    <hr style="margin: 15px 0;">
+    
+    <h4>Zoom</h4>
+    <div class="zoomSize">
+      <button id="zoomInButton" class="smallBlackButton">+</button>
+      <button id="zoomOutButton" class="smallWhiteButton">−</button>
+    </div>
+
+    <hr style="margin: 15px 0;">
+
+    <h4>Size</h4>
+    <div class="zoomSize">
+      <button id="addSizeButton" class="smallBlackButton" s>+</button>
+      <button id="reduceSizeButton" class="smallWhiteButton">−</button>
+    </div>
+  </div>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="pyramid.js"></script>
+</body>
+</html>
