@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Lexend+Giga:wght@100..900&display=swap"
-    rel="stylesheet">
-  <title>Cuboid Unfolding Animation</title>
-  <style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Lexend+Giga:wght@100..900&display=swap"
+      rel="stylesheet">
+    <title>Cuboid Unfolding Animation</title>
+    <style>
     body {
       margin: 0;
       overflow: hidden;
@@ -74,114 +74,114 @@
       box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.1);
       border-radius: 50%;
     }
-  </style>
-</head>
+    </style>
+  </head>
 
-<body>
-  <div style="
-    position: absolute;
-    top: 20px; 
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    gap: 20px;
-">
-    <div id="geometryTitle" style="
-      padding: 10px 20px;
-      border-radius: 5px;
-      font-family: 'Lexend Giga', sans-serif;
-      font-size: 90px;
-      font-weight: bold;
-  ">
-      Balok
+  <body>
+    <div style="
+      position: absolute;
+      top: 20px; 
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      ">
+      <div id="geometryTitle" style="
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-family: 'Lexend Giga', sans-serif;
+        font-size: 90px;
+        font-weight: bold;
+        ">
+        Balok
+      </div>
     </div>
-  </div>
 
-  <div id="formulaPanel" style="
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    width: 400px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(245, 245, 245, 0.98) 100%);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-    font-family: 'Cambria Math', 'STIX Math', 'Times New Roman', serif;
-    font-size: 25px;
-    color: #222;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-">
-    <h3 style="
+    <div id="formulaPanel" style="
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      width: 400px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(245, 245, 245, 0.98) 100%);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      font-family: 'Cambria Math', 'STIX Math', 'Times New Roman', serif;
+      font-size: 25px;
+      color: #222;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      ">
+      <h3 style="
         margin-top: 0;
         font-size: 28px;
         border-bottom: 3px solid #000;
         padding-bottom: 10px;
         letter-spacing: 0.5px;
-    ">Rumus Balok</h3>
+        ">Rumus Balok</h3>
 
-    <div style="
+      <div style="
         background: rgba(0, 0, 0, 0.03);
         padding: 15px;
         border-radius: 8px;
         margin: 15px 0;
         border-left: 4px solid #000;
-    ">
-      <p style="margin: 8px 0;"><strong>Volume:</strong> <span style="font-size: 28px; color: #000;">V = p × l × t</span></p>
-      <p style="margin: 8px 0;"><strong>Luas Permukaan:</strong> <span style="font-size: 24px; color: #000;">A = 2(pl + pt + lt)</span></p>
-    </div>
+        ">
+        <p style="margin: 8px 0;"><strong>Volume:</strong> <span style="font-size: 28px; color: #000;">V = p × l × t</span></p>
+        <p style="margin: 8px 0;"><strong>Luas Permukaan:</strong> <span style="font-size: 24px; color: #000;">A = 2(pl + pt + lt)</span></p>
+      </div>
 
-    <hr style="border: none; border-top: 2px dashed #ccc; margin: 20px 0;">
+      <hr style="border: none; border-top: 2px dashed #ccc; margin: 20px 0;">
 
-    <h4 style="
+      <h4 style="
         font-size: 24px;
         margin: 15px 0 10px 0;
         color: #444;
-    ">Contoh</h4>
+        ">Contoh</h4>
 
-    <div style="
+      <div style="
         background: rgba(0, 0, 0, 0.05);
         padding: 15px;
         border-radius: 8px;
         border: 2px solid #000;
-    ">
-      <p id="dimensions" style="
-            margin: 8px 0;
-            font-weight: 600;
-            color: #555;
-            font-size: 18px;
-        ">p = 15 cm, l = 10 cm, t = 8 cm</p>
-      <p id="volume" style="
-            margin: 8px 0;
-            font-size: 20px;
-            color: #000;
-        ">V = 15 × 10 × 8 = 1200 cm³</p>
-      <p id="surface" style="
-            margin: 8px 0;
-            font-size: 18px;
-            color: #000;
-        ">A = 2(150 + 120 + 80) = 700 cm²</p>
+        ">
+        <p id="dimensions" style="
+          margin: 8px 0;
+          font-weight: 600;
+          color: #555;
+          font-size: 18px;
+          ">p = 15 cm, l = 10 cm, t = 8 cm</p>
+        <p id="volume" style="
+          margin: 8px 0;
+          font-size: 20px;
+          color: #000;
+          ">V = 15 × 10 × 8 = 1200 cm³</p>
+        <p id="surface" style="
+          margin: 8px 0;
+          font-size: 18px;
+          color: #000;
+          ">A = 2(150 + 120 + 80) = 700 cm²</p>
+      </div>
     </div>
-  </div>
 
-  <div id="controlPanel" style="
-    position: absolute;
-    top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
-    width: 250px;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    font-family: Arial, sans-serif;
-    font-size: 22px;
-    color: #222;
-    text-align: center;
-">
-    <h3 style="margin-top:0;">Kontrol</h3>
-    <button id="toggleBtn" style="
+    <div id="controlPanel" style="
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      transform: translateY(-50%);
+      width: 250px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      font-family: Arial, sans-serif;
+      font-size: 22px;
+      color: #222;
+      text-align: center;
+      ">
+      <h3 style="margin-top:0;">Kontrol</h3>
+      <button id="toggleBtn" style="
         margin: 8px 0; 
         width: 100%; 
         padding: 12px; 
@@ -194,11 +194,11 @@
         font-weight: 600;
         transition: all 0.3s ease;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(0, 0, 0, 0.3)'"
-      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.2)'">
-      Bongkar
-    </button>
-    <button id="showInfoBtn" style="
+        " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(0, 0, 0, 0.3)'"
+        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.2)'">
+        Bongkar
+      </button>
+      <button id="showInfoBtn" style="
         margin: 8px 0; 
         width: 100%; 
         padding: 12px; 
@@ -211,11 +211,11 @@
         font-weight: 600;
         transition: all 0.3s ease;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(0, 0, 0, 0.3)'"
-      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.2)'">
-      Tampilkan Info
-    </button>
-    <button id="resetBtn" style="
+        " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(0, 0, 0, 0.3)'"
+        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.2)'">
+        Tampilkan Info
+      </button>
+      <button id="resetBtn" style="
         margin: 8px 0; 
         width: 100%; 
         padding: 12px; 
@@ -228,15 +228,15 @@
         font-weight: 600;
         transition: all 0.3s ease;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    " onmouseover="this.style.background='#000'; this.style.color='white'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(0, 0, 0, 0.3)'"
-      onmouseout="this.style.background='white'; this.style.color='#000'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.1)'">
-      Reset Tampilan
-    </button>
+        " onmouseover="this.style.background='#000'; this.style.color='white'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(0, 0, 0, 0.3)'"
+        onmouseout="this.style.background='white'; this.style.color='#000'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.1)'">
+        Reset Tampilan
+      </button>
 
-    <hr style="margin: 15px 0;">
-    <h4 style="margin: 10px 0;">Zoom</h4>
-    <div style="display: flex; gap: 8px;">
-      <button id="zoomInBtn" style="
+      <hr style="margin: 15px 0;">
+      <h4 style="margin: 10px 0;">Zoom</h4>
+      <div style="display: flex; gap: 8px;">
+        <button id="zoomInBtn" style="
           margin: 0; 
           width: 50%; 
           padding: 12px; 
@@ -249,11 +249,11 @@
           font-weight: 700;
           transition: all 0.3s ease;
           box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-      " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 5px 10px rgba(0, 0, 0, 0.3)'"
-        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 5px rgba(0, 0, 0, 0.2)'">
-        +
-      </button>
-      <button id="zoomOutBtn" style="
+          " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 5px 10px rgba(0, 0, 0, 0.3)'"
+          onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 5px rgba(0, 0, 0, 0.2)'">
+          +
+        </button>
+        <button id="zoomOutBtn" style="
           margin: 0; 
           width: 50%; 
           padding: 12px; 
@@ -266,19 +266,19 @@
           font-weight: 700;
           transition: all 0.3s ease;
           box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-      " onmouseover="this.style.background='#000'; this.style.color='white'; this.style.transform='scale(1.05)'; this.style.boxShadow='0 5px 10px rgba(0, 0, 0, 0.3)'"
-        onmouseout="this.style.background='white'; this.style.color='#000'; this.style.transform='scale(1)'; this.style.boxShadow='0 3px 5px rgba(0, 0, 0, 0.1)'">
-        −
-      </button>
-    </div>
+          " onmouseover="this.style.background='#000'; this.style.color='white'; this.style.transform='scale(1.05)'; this.style.boxShadow='0 5px 10px rgba(0, 0, 0, 0.3)'"
+          onmouseout="this.style.background='white'; this.style.color='#000'; this.style.transform='scale(1)'; this.style.boxShadow='0 3px 5px rgba(0, 0, 0, 0.1)'">
+          −
+        </button>
+      </div>
 
-    <hr style="margin: 15px 0;">
-    <h4 style="margin: 10px 0;">Ukuran</h4>
-    
-    <div style="margin: 10px 0;">
-      <label style="font-size: 16px; display: block; margin-bottom: 5px;">Panjang (p)</label>
-      <div style="display: flex; gap: 8px;">
-        <button id="addLengthBtn" style="
+      <hr style="margin: 15px 0;">
+      <h4 style="margin: 10px 0;">Ukuran</h4>
+
+      <div style="margin: 10px 0;">
+        <label style="font-size: 16px; display: block; margin-bottom: 5px;">Panjang (p)</label>
+        <div style="display: flex; gap: 8px;">
+          <button id="addLengthBtn" style="
             margin: 0; 
             width: 50%; 
             padding: 12px; 
@@ -291,11 +291,11 @@
             font-weight: 700;
             transition: all 0.3s ease;
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-        " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 5px 10px rgba(0, 0, 0, 0.3)'"
-          onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 5px rgba(0, 0, 0, 0.2)'">
-          +
-        </button>
-        <button id="redLengthBtn" style="
+            " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 5px 10px rgba(0, 0, 0, 0.3)'"
+            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 5px rgba(0, 0, 0, 0.2)'">
+            +
+          </button>
+          <button id="redLengthBtn" style="
             margin: 0; 
             width: 50%; 
             padding: 12px; 
@@ -308,17 +308,17 @@
             font-weight: 700;
             transition: all 0.3s ease;
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-        " onmouseover="this.style.background='#000'; this.style.color='white'; this.style.transform='scale(1.05)'; this.style.boxShadow='0 5px 10px rgba(0, 0, 0, 0.3)'"
-          onmouseout="this.style.background='white'; this.style.color='#000'; this.style.transform='scale(1)'; this.style.boxShadow='0 3px 5px rgba(0, 0, 0, 0.1)'">
-          −
-        </button>
+            " onmouseover="this.style.background='#000'; this.style.color='white'; this.style.transform='scale(1.05)'; this.style.boxShadow='0 5px 10px rgba(0, 0, 0, 0.3)'"
+            onmouseout="this.style.background='white'; this.style.color='#000'; this.style.transform='scale(1)'; this.style.boxShadow='0 3px 5px rgba(0, 0, 0, 0.1)'">
+            −
+          </button>
+        </div>
       </div>
-    </div>
 
-    <div style="margin: 10px 0;">
-      <label style="font-size: 16px; display: block; margin-bottom: 5px;">Lebar (l)</label>
-      <div style="display: flex; gap: 8px;">
-        <button id="addWidthBtn" style="
+      <div style="margin: 10px 0;">
+        <label style="font-size: 16px; display: block; margin-bottom: 5px;">Lebar (l)</label>
+        <div style="display: flex; gap: 8px;">
+          <button id="addWidthBtn" style="
             margin: 0; 
             width: 50%; 
             padding: 12px; 
@@ -331,11 +331,11 @@
             font-weight: 700;
             transition: all 0.3s ease;
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-        " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 5px 10px rgba(0, 0, 0, 0.3)'"
-          onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 5px rgba(0, 0, 0, 0.2)'">
-          +
-        </button>
-        <button id="redWidthBtn" style="
+            " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 5px 10px rgba(0, 0, 0, 0.3)'"
+            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 5px rgba(0, 0, 0, 0.2)'">
+            +
+          </button>
+          <button id="redWidthBtn" style="
             margin: 0; 
             width: 50%; 
             padding: 12px; 
@@ -348,17 +348,17 @@
             font-weight: 700;
             transition: all 0.3s ease;
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-        " onmouseover="this.style.background='#000'; this.style.color='white'; this.style.transform='scale(1.05)'; this.style.boxShadow='0 5px 10px rgba(0, 0, 0, 0.3)'"
-          onmouseout="this.style.background='white'; this.style.color='#000'; this.style.transform='scale(1)'; this.style.boxShadow='0 3px 5px rgba(0, 0, 0, 0.1)'">
-          −
-        </button>
+            " onmouseover="this.style.background='#000'; this.style.color='white'; this.style.transform='scale(1.05)'; this.style.boxShadow='0 5px 10px rgba(0, 0, 0, 0.3)'"
+            onmouseout="this.style.background='white'; this.style.color='#000'; this.style.transform='scale(1)'; this.style.boxShadow='0 3px 5px rgba(0, 0, 0, 0.1)'">
+            −
+          </button>
+        </div>
       </div>
-    </div>
 
-    <div style="margin: 10px 0;">
-      <label style="font-size: 16px; display: block; margin-bottom: 5px;">Tinggi (t)</label>
-      <div style="display: flex; gap: 8px;">
-        <button id="addHeightBtn" style="
+      <div style="margin: 10px 0;">
+        <label style="font-size: 16px; display: block; margin-bottom: 5px;">Tinggi (t)</label>
+        <div style="display: flex; gap: 8px;">
+          <button id="addHeightBtn" style="
             margin: 0; 
             width: 50%; 
             padding: 12px; 
@@ -371,11 +371,11 @@
             font-weight: 700;
             transition: all 0.3s ease;
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-        " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 5px 10px rgba(0, 0, 0, 0.3)'"
-          onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 5px rgba(0, 0, 0, 0.2)'">
-          +
-        </button>
-        <button id="redHeightBtn" style="
+            " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 5px 10px rgba(0, 0, 0, 0.3)'"
+            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 5px rgba(0, 0, 0, 0.2)'">
+            +
+          </button>
+          <button id="redHeightBtn" style="
             margin: 0; 
             width: 50%; 
             padding: 12px; 
@@ -388,23 +388,23 @@
             font-weight: 700;
             transition: all 0.3s ease;
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-        " onmouseover="this.style.background='#000'; this.style.color='white'; this.style.transform='scale(1.05)'; this.style.boxShadow='0 5px 10px rgba(0, 0, 0, 0.3)'"
-          onmouseout="this.style.background='white'; this.style.color='#000'; this.style.transform='scale(1)'; this.style.boxShadow='0 3px 5px rgba(0, 0, 0, 0.1)'">
-          −
-        </button>
+            " onmouseover="this.style.background='#000'; this.style.color='white'; this.style.transform='scale(1.05)'; this.style.boxShadow='0 5px 10px rgba(0, 0, 0, 0.3)'"
+            onmouseout="this.style.background='white'; this.style.color='#000'; this.style.transform='scale(1)'; this.style.boxShadow='0 3px 5px rgba(0, 0, 0, 0.1)'">
+            −
+          </button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script type="importmap">
+    <script type="importmap">
     {
-      "imports": {
-        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-      }
+    "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
     }
-  </script>
-  <script type="module">
+    }
+    </script>
+    <script type="module">
     import * as THREE from "three";
     import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
@@ -556,7 +556,7 @@
       const pt = p * t;
       const lt = l * t;
       const area = 2 * (pl + pt + lt);
-      
+
       dimensionsEl.textContent = `p = ${p.toFixed(0)} cm, l = ${l.toFixed(0)} cm, t = ${t.toFixed(0)} cm`;
       volumeEl.textContent = `V = ${p.toFixed(0)} × ${l.toFixed(0)} × ${t.toFixed(0)} = ${v.toFixed(0)} cm³`;
       surfaceEl.textContent = `A = 2(${pl.toFixed(0)} + ${pt.toFixed(0)} + ${lt.toFixed(0)}) = ${area.toFixed(0)} cm²`;
@@ -687,10 +687,10 @@
     document.getElementById('toggleBtn').addEventListener('click', () => {
       unfold = !unfold;
       targetProgress = unfold ? 1 : 0;
-      
+
       const btn = document.getElementById('toggleBtn');
       btn.textContent = unfold ? 'Lipat' : 'Bongkar';
-      
+
       if (unfold && showInfo) {
         infoLabels.forEach(label => label.element.style.display = 'none');
         showInfo = false;
@@ -747,7 +747,7 @@
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
-  </script>
-</body>
+    </script>
+  </body>
 
 </html>
