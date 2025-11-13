@@ -274,7 +274,7 @@ document.getElementById("prevShapeBtn").onclick = () => {
   window.location.href = "cube.html";
 };
 document.getElementById("nextShapeBtn").onclick = () => {
-  window.location.href = "pyramid.html";
+  window.location.href = "cylinder.html";
 };
 
 function easeInOutCubic(t) {

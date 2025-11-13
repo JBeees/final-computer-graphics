@@ -197,7 +197,7 @@ function updateCubeSize() {
 }
 
 document.getElementById("prevButton").onclick = () => {
-  window.location.href = "pyramid.html";
+  window.location.href = "cuboid.html";
 };
 document.getElementById("nextButton").onclick = () => {
   window.location.href = "cone.html";
