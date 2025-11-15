@@ -15,7 +15,6 @@ document.body.appendChild(renderer.domElement);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
-// Grid helper seperti cube
 const gridHelper = new THREE.GridHelper(10, 10, 0x444444, 0x222222);
 gridHelper.position.y = -2;
 scene.add(gridHelper);
@@ -23,15 +22,20 @@ scene.add(gridHelper);
 // === Parameters ===
 let radius = 1;
 let height = 2;
-const segments = 60;
+const segments = 25;
 
 // === Materials ===
 const baseMaterial = new THREE.MeshBasicMaterial({
   color: 0xffffff,
-  side: THREE.DoubleSide
+  side: THREE.DoubleSide,
+  transparent: true
 });
 
-const edgeMaterial = new THREE.LineBasicMaterial({ color: 0x000000, linewidth: 2 });
+const edgeMaterial = new THREE.LineBasicMaterial({ 
+  color: 0x000000, 
+  linewidth: 2,
+  transparent: true
+});
 
 // === Groups ===
 const coneGroup = new THREE.Group();
@@ -41,8 +45,11 @@ sectorGroup.visible = false;
 
 // === Variables ===
 let slices = [];
+let baseCap = null;
 let sectorMesh = null;
 let sectorWire = null;
+let sectorBase = null;
+let sectorBaseWire = null;
 let showInfo = false;
 const infoLabels = [];
 
@@ -94,6 +101,7 @@ function createCone() {
   const unfoldAngle = (2 * Math.PI * radius) / slantHeight;
   const angleStep = (2 * Math.PI) / segments;
 
+  // Create cone slices
   for (let i = 0; i < segments; i++) {
     const theta1 = i * angleStep;
     const theta2 = (i + 1) * angleStep;
@@ -110,7 +118,7 @@ function createCone() {
 
     const mesh = new THREE.Mesh(geom, baseMaterial.clone());
     const edgeGeometry = new THREE.EdgesGeometry(geom);
-    const edges = new THREE.LineSegments(edgeGeometry, edgeMaterial);
+    const edges = new THREE.LineSegments(edgeGeometry, edgeMaterial.clone());
 
     const pivot = new THREE.Group();
     pivot.position.set(0, height / 2, 0);
@@ -125,12 +133,37 @@ function createCone() {
     slices.push(pivot);
   }
 
-  // Update sector
+  // Create base cap (alas cone)
+  const baseCircleGeom = new THREE.CircleGeometry(radius, segments);
+  
+  baseCap = new THREE.Group();
+  const baseMesh = new THREE.Mesh(baseCircleGeom, baseMaterial.clone());
+  baseMesh.material.transparent = true;
+  baseMesh.material.opacity = 1;
+  baseMesh.rotation.x = -Math.PI / 2;
+  
+  const baseEdges = new THREE.LineSegments(
+    new THREE.EdgesGeometry(baseCircleGeom),
+    edgeMaterial.clone()
+  );
+  baseEdges.material.transparent = true;
+  baseEdges.material.opacity = 1;
+  baseEdges.rotation.x = -Math.PI / 2;
+  
+  baseCap.add(baseMesh, baseEdges);
+  baseCap.position.y = -height / 2;
+  coneGroup.add(baseCap);
+
+  // Create sector (unfolded shape)
   if (sectorMesh) {
     sectorGroup.remove(sectorMesh);
     sectorGroup.remove(sectorWire);
+    if (sectorBase) sectorGroup.remove(sectorBase);
+    if (sectorBaseWire) sectorGroup.remove(sectorBaseWire);
     sectorMesh.geometry.dispose();
     sectorWire.geometry.dispose();
+    if (sectorBase) sectorBase.geometry.dispose();
+    if (sectorBaseWire) sectorBaseWire.geometry.dispose();
   }
 
   const sectorGeometry = new THREE.BufferGeometry();
@@ -150,16 +183,39 @@ function createCone() {
 
   const sectorMaterial = new THREE.MeshBasicMaterial({
     color: 0xffffff,
-    side: THREE.DoubleSide
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 0
   });
   sectorMesh = new THREE.Mesh(sectorGeometry, sectorMaterial);
   sectorGroup.add(sectorMesh);
 
   sectorWire = new THREE.LineSegments(
     new THREE.WireframeGeometry(sectorGeometry),
-    edgeMaterial
+    edgeMaterial.clone()
   );
+  sectorWire.material.transparent = true;
+  sectorWire.material.opacity = 0;
   sectorGroup.add(sectorWire);
+
+  // Create base circle for sector (tetap horizontal juga)
+  const sectorBaseGeom = new THREE.CircleGeometry(radius, segments);
+  sectorBase = new THREE.Mesh(sectorBaseGeom, baseMaterial.clone());
+  sectorBase.material.transparent = true;
+  sectorBase.material.opacity = 0;
+  sectorBase.rotation.x = -Math.PI / 2; // Horizontal seperti base cap
+  sectorBase.position.set(0, 0, slantHeight * -0.5); // X=0 (tengah), Z ke belakang
+  sectorGroup.add(sectorBase);
+
+  sectorBaseWire = new THREE.LineSegments(
+    new THREE.EdgesGeometry(sectorBaseGeom),
+    edgeMaterial.clone()
+  );
+  sectorBaseWire.material.transparent = true;
+  sectorBaseWire.material.opacity = 0;
+  sectorBaseWire.rotation.x = -Math.PI / 2; // Horizontal
+  sectorBaseWire.position.copy(sectorBase.position);
+  sectorGroup.add(sectorBaseWire);
 
   // Update info labels positions
   infoLabels.length = 0;
@@ -251,7 +307,6 @@ document.getElementById('addSizeBtn').addEventListener('click', () => {
     height += 0.2;
     createCone();
     updateFormulas();
-    // Reapply current progress
     const easedProgress = easeInOutCubic(progress);
     applyUnfoldTransform(easedProgress);
   }
@@ -263,7 +318,6 @@ document.getElementById('redSizeBtn').addEventListener('click', () => {
     height -= 0.2;
     createCone();
     updateFormulas();
-    // Reapply current progress
     const easedProgress = easeInOutCubic(progress);
     applyUnfoldTransform(easedProgress);
   }
@@ -286,6 +340,7 @@ function applyUnfoldTransform(easedProgress) {
   const unfoldAngle = (2 * Math.PI * radius) / slantHeight;
   const angleStep = (2 * Math.PI) / segments;
 
+  // Animate cone slices with staggered delay
   for (let i = 0; i < slices.length; i++) {
     const t = i / segments;
     const delay = i * 0.015;
@@ -296,7 +351,40 @@ function applyUnfoldTransform(easedProgress) {
     const rotY = (unfoldAngle / 2 - t * unfoldAngle) * eased;
     const rotX = -Math.PI / 2 * eased * 0.95;
     slices[i].rotation.set(rotX, rotY, 0);
+    
+    // Opacity crossfade for slices
+    slices[i].children.forEach((child) => {
+      if (child.material) {
+        child.material.opacity = 1 - easedProgress;
+      }
+    });
   }
+
+  // Animate base cap
+  if (baseCap) {
+    const startY = -height / 2;
+    const endY = 0; // Naik ke level yang sama dengan sector
+    const startX = 0;
+    const endX = slantHeight * 0; // Tetap di tengah (X = 0)
+    const endZ = slantHeight * -0.5; // Geser ke belakang agar tidak tabrakan
+    
+    baseCap.position.y = THREE.MathUtils.lerp(startY, endY, easedProgress);
+    baseCap.position.x = THREE.MathUtils.lerp(startX, endX, easedProgress);
+    baseCap.position.z = THREE.MathUtils.lerp(0, endZ, easedProgress);
+    
+    // Tetap horizontal (tidak berubah rotasi)
+    baseCap.children.forEach((c) => {
+      // Rotasi tetap -π/2 (horizontal) dari awal sampai akhir
+      c.rotation.x = -Math.PI / 2;
+      if (c.material) c.material.opacity = 1 - easedProgress;
+    });
+  }
+
+  // Fade in sector and its base
+  if (sectorMesh) sectorMesh.material.opacity = easedProgress;
+  if (sectorWire) sectorWire.material.opacity = easedProgress;
+  if (sectorBase) sectorBase.material.opacity = easedProgress;
+  if (sectorBaseWire) sectorBaseWire.material.opacity = easedProgress;
 }
 
 // === Animation loop ===
@@ -313,13 +401,47 @@ function animate(time) {
       unfolding = false;
       coneGroup.visible = false;
       sectorGroup.visible = true;
+      // Set final opacity
+      if (sectorMesh) sectorMesh.material.opacity = 1;
+      if (sectorWire) sectorWire.material.opacity = 1;
+      if (sectorBase) sectorBase.material.opacity = 1;
+      if (sectorBaseWire) sectorBaseWire.material.opacity = 1;
     }
-  } else if (folding) {
+   } else if (folding) {
     progress -= dt * 0.4;
     if (progress <= 0) {
       progress = 0;
       folding = false;
+      // Reset slices rotation and opacity
+      slices.forEach((slice) => {
+        slice.rotation.set(0, 0, 0); // ✅ Reset rotation ke 0
+        slice.children.forEach((child) => {
+          if (child.material) child.material.opacity = 1;
+        });
+      });
+      if (baseCap) {
+        // Reset position
+        baseCap.position.set(0, -height / 2, 0);
+        // Reset opacity
+        baseCap.children.forEach((c) => {
+          c.rotation.x = -Math.PI / 2;
+          if (c.material) c.material.opacity = 1;
+        });
+      }
+      // Reset sector opacity ke 0 (PENTING!)
+      if (sectorMesh) sectorMesh.material.opacity = 0;
+      if (sectorWire) sectorWire.material.opacity = 0;
+      if (sectorBase) sectorBase.material.opacity = 0;
+      if (sectorBaseWire) sectorBaseWire.material.opacity = 0;
+      
+      // Sembunyikan sector group
+      sectorGroup.visible = false;
     }
+  }
+
+  if (unfolding || folding) {
+    coneGroup.visible = true;
+    sectorGroup.visible = true;
   }
 
   const easedProgress = easeInOutCubic(progress);
