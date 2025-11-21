@@ -5,12 +5,12 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xeffffff);
 
 // // Pencahayaan
-const ambient = new THREE.AmbientLight(0xffffff, 1);
+const ambient = new THREE.AmbientLight(0xffffff, 3.);
 scene.add(ambient);
 
 // Posisi kamera
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(6, 8, 8);
+camera.position.set(6.5, 6, 6.5);   
 
 // Anti aliasing
 const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -21,16 +21,16 @@ document.body.appendChild(renderer.domElement);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.minPolarAngle = 0;
-controls.maxPolarAngle = Math.PI / 1.8;
+controls.maxPolarAngle = Math.PI / 1.65;
 
 // Grid Helper
-const gridHelper = new THREE.GridHelper(25, 25, 0x444444, 0x222222);
-gridHelper.position.y = -2.5;
+const gridHelper = new THREE.GridHelper(10, 10, 0x444444, 0x222222);
+gridHelper.position.y = -2;
 scene.add(gridHelper);
 
 // Deklarasi panjang rusuk dan tinggi
 let panjangRusuk = 1;
-let tinggi = 3
+let tinggi = 2
 
 const rusuk = document.getElementById("pyramidDeclare");
 const volume = document.getElementById("pyramidVolume");
@@ -119,8 +119,8 @@ function createInfoLabel(text) {
 
 infoLabels.push(
   { element: labelTitikSudut, position: new THREE.Vector3(0, tinggi, 0), offset: { x: 10, y: -10 } },
-  { element: labelRusuk, position: new THREE.Vector3(0, 0, panjangRusuk), offset: { x: 10, y: 0 } },
-  { element: labelSisi, position: new THREE.Vector3(panjangRusuk*0.7, tinggi/3, 0), offset: { x: 10, y: 10 } }
+  { element: labelRusuk, position: new THREE.Vector3(0, -1, panjangRusuk), offset: { x: 10, y: 0 } },
+  { element: labelSisi, position: new THREE.Vector3(panjangRusuk*0.8, tinggi / 3, 0), offset: { x: 10, y: 10 } }
 );
 
 function updateInfoLabels() {
@@ -298,8 +298,7 @@ document.getElementById('showInfoButton').addEventListener('click', () => {
 
 document.getElementById('resetButton').addEventListener('click', () => {
     controls.reset();
-    controls.target.set(0, 1.5, 0);
-    camera.position.set(4, 6, 8);
+    camera.position.set(6.5, 6, 6.5);  
     controls.update();
 });
 
@@ -313,17 +312,29 @@ document.getElementById('zoomOutButton').addEventListener('click', () => {
     camera.updateProjectionMatrix();
 })
 
-document.getElementById('addSizeButton').addEventListener('click', () => {
+document.getElementById('addBaseLengthButton').addEventListener('click', () => {
     if (panjangRusuk < 2) {
         panjangRusuk += 0.1;
+        bangunLimas(panjangRusuk, tinggi);
+    }
+});
+
+document.getElementById('reduceBaseLengthButton').addEventListener('click', () => {
+    if (panjangRusuk > 0.51) {
+        panjangRusuk -= 0.1;
+        bangunLimas(panjangRusuk, tinggi);
+    }
+});
+
+document.getElementById('addHeightButton').addEventListener('click', () => {
+    if (tinggi < 4) {
         tinggi += 0.2
         bangunLimas(panjangRusuk, tinggi);
     }
 });
 
-document.getElementById('reduceSizeButton').addEventListener('click', () => {
-    if (panjangRusuk > 0.5) {
-        panjangRusuk -= 0.1;
+document.getElementById('reduceHeightButton').addEventListener('click', () => {
+    if (tinggi > 1.1) {
         tinggi -= 0.2
         bangunLimas(panjangRusuk, tinggi);
     }

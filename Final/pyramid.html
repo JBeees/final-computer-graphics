@@ -1,72 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
+  <!DOCTYPE html>
+  <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Lexend+Giga:wght@100..900&display=swap">
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
-  <link rel="stylesheet" href="style.css">
-  <title>Limas Segi Empat</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Lexend+Giga:wght@100..900&display=swap" rel="stylesheet">> 
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Limas Segi Empat</title>
+  </head>
 
-<body>
-  <div id="top">
-    <button id="prevButton">‹</button>
-    <div id="geometryTitle">Limas</div>
-    <button id="nextButton">›</button>
-  </div>
-
-  <div id="formulaPanel"> 
-    <h3>Rumus Limas Segi empat</h3>
-    <div class="formulaCard">
-      <p style="margin: 8px 0;"><strong>Volume:</strong> <span style="font-size: 18px; color: #000;">$$ {V =\frac{1}{3}\times \text{Luas Alas}\times \text{Tinggi}} $$</span></p>
-      <p style="margin: 8px 0;"><strong>Luas Area:</strong> <span style="font-size: 18px; color: #000;">$$  {A = s^{2} + {4} \times (\frac{1}{2} \times(s) \times \text{t_segitiga})} $$</span></p>
+  <body>
+    <div id="top">
+      <button id="prevButton">‹</button>
+      <div id="geometryTitle">Limas</div>
+      <button id="nextButton">›</button>
     </div>
 
-    <hr style="border: none; border-top: 2px dashed #ccc; margin: 20px 0;"> 
+    <div id="formulaPanel"> 
+      <h3>Rumus Limas Segi empat</h3>
+      <div class="formulaCard">
+        <p style="margin: 8px 0;"><strong>Volume:</strong> <span style="font-size: 18px; color: #000;">$$ {V =\frac{1}{3}\times \text{Luas Alas}\times \text{Tinggi}} $$</span></p>
+        <p style="margin: 8px 0;"><strong>Luas Area:</strong> <span style="font-size: 18px; color: #000;">$$  {A = s^{2} + {4} \times (\frac{1}{2} \times(s) \times \text{t_segitiga})} $$</span></p>
+      </div>
 
-    <h3>Example</h3>
-    <div class="formulaCard">
-      <p id="pyramidDeclare" class="formulaExample">$$  {\text{anggap }s = 10 \text { dan } t = 30} $$</p>
-      <p id="pyramidVolume" class="formulaExample">$$  {V = \frac{1}{3}\times{10}^{2}\times{30} = {1000}} $$</p>
-      <p id="pyramidSurface" class="formulaExample">$$  {{A} = {10}^2+{4}\times(\frac{1}{2}\times{10}\times{30}) = 700} $$</p>
-    </div>
-  </div>
+      <hr style="border: none; border-top: 2px dashed #ccc; margin: 20px 0;"> 
 
-  <div id="controlPanel">
-    <h3>Controls</h3>
-    <button id="unfoldButton" class = "whiteButton">Jaring-Jaring</button>
-    <button id="foldButton" class = "blackButton">Bangun Limas</button>
-    <button id="showInfoButton" class = "whiteButton">Informasi</button>
-    <button id="resetButton" class="blackButton">Reset View</button>
-
-    <hr style="margin: 15px 0;">
-    
-    <h4>Zoom</h4>
-    <div class="zoomSize">
-      <button id="zoomInButton" class="smallBlackButton">+</button>
-      <button id="zoomOutButton" class="smallWhiteButton">−</button>
+      <h3>Contoh</h3>
+      <div class="formulaCard">
+        <p id="pyramidDeclare" class="formulaExample">$$  {\text{anggap }s = 10 \text { dan } t = 30} $$</p>
+        <p id="pyramidVolume" class="formulaExample">$$  {V = \frac{1}{3}\times{10}^{2}\times{30} = {1000}} $$</p>
+        <p id="pyramidSurface" class="formulaExample">$$  {{A} = {10}^2+{4}\times(\frac{1}{2}\times{10}\times{30}) = 700} $$</p>
+      </div>
     </div>
 
-    <hr style="margin: 15px 0;">
+    <div id="controlPanel">
+      <h3>Interaksi</h3>
+      <button id="unfoldButton" class = "blackButton">Jaring-Jaring</button>
+      <button id="foldButton" class = "whiteButton" >Bangun Limas</button>
+      <button id="showInfoButton" class = "blackButton">Informasi</button>
+      <button id="resetButton" class="whiteButton">Reset View</button>
 
-    <h4>Ukuran</h4>
-    <div class="zoomSize">
-      <button id="addSizeButton" class="smallBlackButton" s>+</button>
-      <button id="reduceSizeButton" class="smallWhiteButton">−</button>
+      <hr style="margin: 10px 0;">
+      
+      <h4>Zoom</h4>
+      <div class="zoomSize">
+        <button id="zoomInButton" class="smallBlackButton">+</button>
+        <button id="zoomOutButton" class="smallWhiteButton">−</button>
+      </div>
+
+      <hr style="margin: 10px 0;">
+
+      <h4>Ubah Panjang Limas</h4>
+      <div class="zoomSize">
+        <button id="addBaseLengthButton" class="smallBlackButton" s>+</button>
+        <button id="reduceBaseLengthButton" class="smallWhiteButton">−</button>
+      </div>
+      <h4>Ubah Tinggi Limas</h4>
+      <div class="zoomSize">
+        <button id="addHeightButton" class="smallBlackButton" s>+</button>
+        <button id="reduceHeightButton" class="smallWhiteButton">−</button>
+      </div>
     </div>
-  </div>
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
       }
-    }
-  </script>
-  <script type="module" src="pyramid.js"></script>
-</body>
-</html>
+    </script>
+    <script type="module" src="pyramid.js"></script>
+  </body>
+  </html>
