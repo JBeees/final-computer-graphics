@@ -9,7 +9,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Lexend+Giga:wght@100..900&display=swap"
     rel="stylesheet">
-  <title>Kubus</title>
+  <title>Cube Unfolding Animation</title>
   <style>
     body {
       margin: 0;
@@ -95,7 +95,7 @@
     align-items: center;
     gap: 20px;
 ">
-    <button id="prevBtn" style="
+    <button id="prevShapeBtn" style="
       background: white;
       border: 2px solid #222;
       color: black;
@@ -113,10 +113,10 @@
       font-size: 90px;
       font-weight: bold;
   ">
-      Kubus
+      Cube
     </div>
 
-    <button id="nextBtn" style="
+    <button id="nextShapeBtn" style="
       background: white;
       border: 2px solid #222;
       color: black;
@@ -148,7 +148,7 @@
         border-bottom: 3px solid #000;
         padding-bottom: 10px;
         letter-spacing: 0.5px;
-    ">Rumus Kubus</h3>
+    ">Cube Formulas</h3>
 
     <div style="
         background: rgba(0, 0, 0, 0.03);
@@ -158,7 +158,7 @@
         border-left: 4px solid #000;
     ">
       <p style="margin: 8px 0;"><strong>Volume:</strong> <span style="font-size: 28px; color: #000;">V = a³</span></p>
-      <p style="margin: 8px 0;"><strong>Luas Permukaan:</strong> <span style="font-size: 28px; color: #000;">A = 6 ×
+      <p style="margin: 8px 0;"><strong>Surface Area:</strong> <span style="font-size: 28px; color: #000;">A = 6 ×
           a²</span></p>
     </div>
 
@@ -168,7 +168,7 @@
         font-size: 24px;
         margin: 15px 0 10px 0;
         color: #444;
-    ">Contoh</h4>
+    ">Example</h4>
 
     <div style="
         background: rgba(0, 0, 0, 0.05);
@@ -180,7 +180,7 @@
             margin: 8px 0;
             font-weight: 600;
             color: #555;
-        ">Misal a = 10 cm</p>
+        ">Let a = 10 cm</p>
       <p id="cubeVolume" style="
             margin: 8px 0;
             font-size: 22px;
@@ -209,7 +209,7 @@
     color: #222;
     text-align: center;
 ">
-    <h3 style="margin-top:0;">Kendali</h3>
+    <h3 style="margin-top:0;">Controls</h3>
     <button id="unfoldBtn" style="
         margin: 8px 0; 
         width: 100%; 
@@ -225,7 +225,7 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(0, 0, 0, 0.3)'"
       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.2)'">
-      Buka Jaring
+      Unfold
     </button>
 
     <button id="foldBtn" style="
@@ -243,7 +243,7 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     " onmouseover="this.style.background='#000'; this.style.color='white'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(0, 0, 0, 0.3)'"
       onmouseout="this.style.background='white'; this.style.color='#000'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.1)'">
-      Tutup Jaring
+      Fold
     </button>
     <button id="showInfoBtn" style="
         margin: 8px 0; 
@@ -260,7 +260,7 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(0, 0, 0, 0.3)'"
       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.2)'">
-      Tampilkan Info
+      Show Info
     </button>
     <button id="resetBtn" style="
         margin: 8px 0; 
@@ -321,7 +321,7 @@
     </div>
 
     <hr style="margin: 15px 0;">
-    <h4 style="margin: 10px 0;">Ukuran</h4>
+    <h4 style="margin: 10px 0;">Size</h4>
     <div style="display: flex; gap: 8px;">
       <button id="addSizeBtn" style="
           margin: 0; 
@@ -340,7 +340,7 @@
         onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 3px 5px rgba(0, 0, 0, 0.2)'">
         +
       </button>
-      <button id="reduceSizeBtn" style="
+      <button id="redSizeBtn" style="
           margin: 0; 
           width: 50%; 
           padding: 12px; 
@@ -367,6 +367,7 @@
       }
     }
   </script>
-  <script type="module" src="cube.js"></script>
+  <script type="module" src="cube2.js"></script>
 </body>
+
 </html>

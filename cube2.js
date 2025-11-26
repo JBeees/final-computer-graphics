@@ -13,11 +13,9 @@ document.body.appendChild(renderer.domElement);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-controls.minPolarAngle = 0; // horizontal
-controls.maxPolarAngle = Math.PI / 1.8; // vertikal maksimal 100°
 
 const gridHelper = new THREE.GridHelper(10, 10, 0x444444, 0x222222);
-gridHelper.position.y = -2.2;
+gridHelper.position.y = -2;
 scene.add(gridHelper);
 
 let faceSize = 1;
@@ -85,10 +83,7 @@ bottomFace.position.set(0, -halfSize, 0);
 bottomPivot.add(bottomFace);
 bottomPivot.userData.target = { rotation: new THREE.Euler(Math.PI / 2, 0, 0), position: new THREE.Vector3(0, -faceSize, 0) };
 
-const backFace = createFace(materials.back, 'back'
-
-
-);
+const backFace = createFace(materials.back, 'back');
 backFace.position.set(0, 0, -halfSize);
 scene.add(backFace);
 
@@ -115,9 +110,9 @@ function createInfoLabel(text) {
   return label;
 }
 
-const vertexLabel = createInfoLabel('Titik Sudut (8 total)');
-const edgeLabel = createInfoLabel('Rusuk (12 total)');
-const faceLabel = createInfoLabel('Sisi (6 total)');
+const vertexLabel = createInfoLabel('Vertex (8 total)');
+const edgeLabel = createInfoLabel('Edge (12 total)');
+const faceLabel = createInfoLabel('Face (6 total)');
 
 infoLabels.push(
   { element: vertexLabel, position: new THREE.Vector3(halfSize, halfSize, halfSize), offset: { x: 10, y: -10 } },
@@ -149,7 +144,7 @@ function updateCubeSize() {
   const a = faceSize * 10;
   const v = a ** 3;
   const area = 6 * a ** 2;
-  edge.textContent = `Misal a = ${a.toFixed(0)} cm`;
+  edge.textContent = `Let a = ${a.toFixed(0)} cm`;
   volume.textContent = `V = ${a.toFixed(0)}³ = ${v.toFixed(0)} cm³`;
   surface.textContent = `A = 6 x ${a.toFixed(0)}² = ${area.toFixed(0)} cm²`;
 
@@ -196,21 +191,15 @@ function updateCubeSize() {
   });
 }
 
-document.getElementById("prevBtn").onclick = () => {
-  window.location.href = "cuboid.html";
-};
-document.getElementById("nextBtn").onclick = () => {
-  window.location.href = "cone.html";
-};
-document.getElementById("showInfoBtn").onclick = () => {
+document.getElementById('showInfoBtn').addEventListener('click', () => {
   if (unfold) {
     return;
   }
   showInfo = !showInfo;
   const btn = document.getElementById('showInfoBtn');
-  btn.textContent = showInfo ? 'Sembunyikan Info' : 'Tampilkan Info';
+  btn.textContent = showInfo ? 'Hide Info' : 'Show Info';
   updateInfoLabels();
-};
+});
 
 document.getElementById('zoomInBtn').addEventListener('click', () => {
   const direction = new THREE.Vector3();
@@ -233,7 +222,7 @@ document.getElementById('addSizeBtn').addEventListener('click', () => {
   }
 });
 
-document.getElementById('reduceSizeBtn').addEventListener('click', () => {
+document.getElementById('redSizeBtn').addEventListener('click', () => {
   if (faceSize > 0.3) {
     faceSize -= 0.1;
     updateCubeSize();
@@ -247,7 +236,7 @@ document.getElementById('unfoldBtn').addEventListener('click', () => {
     infoLabels.forEach(label => label.element.style.display = 'none');
     showInfo = !showInfo;
     const tempBtn = document.getElementById("showInfoBtn");
-    tempBtn.textContent = "Tampilkan Info";
+    tempBtn.textContent = "Show Info";
   }
   animating = true;
 });
