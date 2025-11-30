@@ -325,7 +325,7 @@ document.getElementById('redSizeBtn').addEventListener('click', () => {
 
 // Navigation buttons
 document.getElementById("prevShapeBtn").onclick = () => {
-  window.location.href = "cube.html";
+  window.location.href = "index.html";
 };
 document.getElementById("nextShapeBtn").onclick = () => {
   window.location.href = "cylinder.html";
