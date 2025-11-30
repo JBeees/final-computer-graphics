@@ -5,12 +5,12 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xeffffff);
 
 // // Pencahayaan
-const ambient = new THREE.AmbientLight(0xffffff, 3.);
+const ambient = new THREE.AmbientLight(0xffffff, 3.33);
 scene.add(ambient);
 
 // Posisi kamera
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(6.5, 6, 6.5);   
+camera.position.set(6.5, 5.5, 6.5);  
 
 // Anti aliasing
 const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -21,7 +21,7 @@ document.body.appendChild(renderer.domElement);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.minPolarAngle = 0;
-controls.maxPolarAngle = Math.PI / 1.65;
+controls.maxPolarAngle = Math.PI / 1.8;
 
 // Grid Helper
 const gridHelper = new THREE.GridHelper(10, 10, 0x444444, 0x222222);
@@ -298,43 +298,35 @@ document.getElementById('showInfoButton').addEventListener('click', () => {
 
 document.getElementById('resetButton').addEventListener('click', () => {
     controls.reset();
-    camera.position.set(6.5, 6, 6.5);  
+    camera.position.set(6.5, 5.5, 6.5); 
     controls.update();
 });
 
 document.getElementById('zoomInButton').addEventListener('click', () => {
-    camera.fov = Math.max(camera.fov - 5, 20);
-    camera.updateProjectionMatrix();
-})
+    const dir = new THREE.Vector3();
+    camera.getWorldDirection(dir);
+    camera.position.addScaledVector(dir, 0.5);
+    controls.update();
+});
 
 document.getElementById('zoomOutButton').addEventListener('click', () => {
-    camera.fov = Math.min(camera.fov + 5, 80);
-    camera.updateProjectionMatrix();
-})
+    const dir = new THREE.Vector3();
+    camera.getWorldDirection(dir);
+    camera.position.addScaledVector(dir, -0.5);
+    controls.update();
+});
 
-document.getElementById('addBaseLengthButton').addEventListener('click', () => {
+document.getElementById('addSizeButton').addEventListener('click', () => {
     if (panjangRusuk < 2) {
         panjangRusuk += 0.1;
-        bangunLimas(panjangRusuk, tinggi);
-    }
-});
-
-document.getElementById('reduceBaseLengthButton').addEventListener('click', () => {
-    if (panjangRusuk > 0.51) {
-        panjangRusuk -= 0.1;
-        bangunLimas(panjangRusuk, tinggi);
-    }
-});
-
-document.getElementById('addHeightButton').addEventListener('click', () => {
-    if (tinggi < 4) {
         tinggi += 0.2
         bangunLimas(panjangRusuk, tinggi);
     }
 });
 
-document.getElementById('reduceHeightButton').addEventListener('click', () => {
-    if (tinggi > 1.1) {
+document.getElementById('reduceSizeButton').addEventListener('click', () => {
+    if (panjangRusuk > 0.51) {
+        panjangRusuk -= 0.1;
         tinggi -= 0.2
         bangunLimas(panjangRusuk, tinggi);
     }
