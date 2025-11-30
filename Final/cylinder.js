@@ -54,7 +54,6 @@ function createGeometry() {
     // Diturunkan ke 0.5. 
     // Hitungan: 0.5 (center) - 1.5 (setengah tinggi) - 1.5 (radius tutup bawah) = -2.5 (pas lantai)
     cylinderGroup.position.y = 0.5; 
-    
     scene.add(cylinderGroup);
     panels = [];
 
