@@ -250,8 +250,8 @@ function animate() {
 }
 
 // === EVENTS ===
-document.getElementById('prevBtn').onclick = () => window.location.href = "cuboid.html";
-document.getElementById('nextBtn').onclick = () => window.location.href = "cone.html";
+document.getElementById('prevBtn').onclick = () => window.location.href = "cone.html";
+document.getElementById('nextBtn').onclick = () => window.location.href = "pyramid.html";
 
 document.getElementById('unfoldBtn').addEventListener('click', () => {
     state.target = 1;
